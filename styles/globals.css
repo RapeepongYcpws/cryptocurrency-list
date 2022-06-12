@@ -1,0 +1,19 @@
+html,
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+  /* font-family: Roboto; */
+  font-family: robotoFont;
+  font-weight: 200 !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+ @font-face{
+   font-family: robotoFont;
+   src: url(../public/fonts/roboto/Roboto-Regular.ttf)
+ }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
