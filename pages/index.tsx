@@ -16,7 +16,7 @@ const CoinGeckoClient = new CoinGecko();
 export default function Index({ resultCoinList }: any) {
   let [coinList, setCoinList] = useState([]);
   const router: any = useRouter();
-  let [showLoading, setShowLoading]: any = useState(true);
+  let [showLoading, setShowLoading]: any = useState(false);
   let [showBtnScrollToTop, setShowBtnScrollToTop]: any = useState(false);
   let [isDarkMode, setIsDarkMode]: any = useState(false);
   let [currentPage, setCurrentPage]: any = useState();
@@ -30,6 +30,7 @@ export default function Index({ resultCoinList }: any) {
     }
   }
   useEffect(() => {
+    setShowLoading(true);
     console.log("use Effect start");
     if (Boolean(window.localStorage.theme)) {
       setIsDarkMode(window.localStorage.theme == "dark");
@@ -53,7 +54,7 @@ export default function Index({ resultCoinList }: any) {
       }
     }
     console.log(router.query);
-    // getCoinList(1);
+    setShowLoading(false);
   }, []);
   async function getCoinList(page: any) {
     console.log("getCoinList ", page);
