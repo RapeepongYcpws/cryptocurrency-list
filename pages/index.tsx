@@ -101,7 +101,7 @@ export default function Index({ resultCoinList }: any) {
           <div className="container mx-auto">
             <div className="flex py-5">
               <div className="w-full text-2xl font-bold text-dark dark:text-light self-center">
-                Crypto Currency
+                Crypto Currency123
                 {/* <button onClick={q}>OK</button> */}
               </div>
 
