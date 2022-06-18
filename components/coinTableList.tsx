@@ -1,13 +1,25 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+// import the icons you need
+import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-export default function CoinTableList({ coinList }: any) {
+export default function CoinTableList({
+  coinList,
+  listChange,
+  orderTable,
+}: any) {
   useEffect(() => {
     console.log("coinList123 ==> ", coinList);
+    console.log("listChange123 ==> ", listChange);
   }, []);
   function getGraphUrl(url: string) {
     let id = url.split("/")[5];
     return `https://www.coingecko.com/coins/${id}/sparkline`;
+  }
+  function sortOrderTable(columnName: String) {
+    listChange(columnName);
   }
 
   return (
@@ -16,30 +28,150 @@ export default function CoinTableList({ coinList }: any) {
         <thead className="border-y bg-red-400" style={{ zIndex: "1" }}>
           <tr>
             <td className="p-2 self-center break-words text-left sticky left-0 bg-light dark:bg-dark duration-500 min-w-[45px] max-w-[45px]">
-              #
+              <span
+                className="cursor-pointer"
+                onClick={() => sortOrderTable("index")}
+              >
+                #
+                {orderTable.split(":")[0] == "index" ? (
+                  <FontAwesomeIcon
+                    icon={
+                      orderTable.split(":")[1] == "asc"
+                        ? faCaretUp
+                        : faCaretDown
+                    }
+                    style={{ fontSize: 16, marginLeft: "8px" }}
+                  />
+                ) : null}
+              </span>
             </td>
             <td
               className={`p-2 flex-1 self-center break-words text-left sticky left-[45px] bg-light dark:bg-dark duration-500 min-w-[120px] max-w-[140px]`}
             >
-              Name
+              <span
+                className="cursor-pointer"
+                onClick={() => sortOrderTable("name")}
+              >
+                Name
+                {orderTable.split(":")[0] == "name" ? (
+                  <FontAwesomeIcon
+                    icon={
+                      orderTable.split(":")[1] == "asc"
+                        ? faCaretUp
+                        : faCaretDown
+                    }
+                    style={{ fontSize: 16, marginLeft: "8px" }}
+                  />
+                ) : null}
+              </span>
             </td>
             <td className="p-2 self-center break-words text-right min-w-[100px] bg-light dark:bg-dark duration-500">
-              Price
+              <span
+                className="cursor-pointer"
+                onClick={() => sortOrderTable("price")}
+              >
+                Price
+                {orderTable.split(":")[0] == "price" ? (
+                  <FontAwesomeIcon
+                    icon={
+                      orderTable.split(":")[1] == "asc"
+                        ? faCaretUp
+                        : faCaretDown
+                    }
+                    style={{ fontSize: 16, marginLeft: "8px" }}
+                  />
+                ) : null}
+              </span>
             </td>
             <td className="p-2 self-center break-words text-right min-w-[100px] bg-light dark:bg-dark duration-500">
-              24h %
+              <span
+                className="cursor-pointer"
+                onClick={() => sortOrderTable("24h")}
+              >
+                24h%
+                {orderTable.split(":")[0] == "24h" ? (
+                  <FontAwesomeIcon
+                    icon={
+                      orderTable.split(":")[1] == "asc"
+                        ? faCaretUp
+                        : faCaretDown
+                    }
+                    style={{ fontSize: 16, marginLeft: "8px" }}
+                  />
+                ) : null}
+              </span>
             </td>
             <td className="p-2 self-center break-words text-right min-w-[100px] bg-light dark:bg-dark duration-500">
-              7d%
+              <span
+                className="cursor-pointer"
+                onClick={() => sortOrderTable("7d")}
+              >
+                7d%
+                {orderTable.split(":")[0] == "7d" ? (
+                  <FontAwesomeIcon
+                    icon={
+                      orderTable.split(":")[1] == "asc"
+                        ? faCaretUp
+                        : faCaretDown
+                    }
+                    style={{ fontSize: 16, marginLeft: "8px" }}
+                  />
+                ) : null}
+              </span>
             </td>
             <td className="p-2 self-center break-words text-right min-w-[160px] bg-light dark:bg-dark duration-500">
-              Market Cap
+              <span
+                className="cursor-pointer"
+                onClick={() => sortOrderTable("marketcap")}
+              >
+                Market Cap
+                {orderTable.split(":")[0] == "marketcap" ? (
+                  <FontAwesomeIcon
+                    icon={
+                      orderTable.split(":")[1] == "asc"
+                        ? faCaretUp
+                        : faCaretDown
+                    }
+                    style={{ fontSize: 16, marginLeft: "8px" }}
+                  />
+                ) : null}
+              </span>
             </td>
             <td className="p-2 self-center break-words text-right min-w-[160px] bg-light dark:bg-dark duration-500">
-              Volumn(24h)
+              <span
+                className="cursor-pointer"
+                onClick={() => sortOrderTable("volumn")}
+              >
+                Volumn(24h)
+                {orderTable.split(":")[0] == "volumn" ? (
+                  <FontAwesomeIcon
+                    icon={
+                      orderTable.split(":")[1] == "asc"
+                        ? faCaretUp
+                        : faCaretDown
+                    }
+                    style={{ fontSize: 16, marginLeft: "8px" }}
+                  />
+                ) : null}
+              </span>
             </td>
             <td className="p-2 self-center break-words text-right min-w-[160px] bg-light dark:bg-dark duration-500">
-              Circulating Supply
+              <span
+                className="cursor-pointer"
+                onClick={() => sortOrderTable("supply")}
+              >
+                Circulating Supply
+                {orderTable.split(":")[0] == "supply" ? (
+                  <FontAwesomeIcon
+                    icon={
+                      orderTable.split(":")[1] == "asc"
+                        ? faCaretUp
+                        : faCaretDown
+                    }
+                    style={{ fontSize: 16, marginLeft: "8px" }}
+                  />
+                ) : null}
+              </span>
             </td>
             <td className="p-2 self-center break-words text-right min-w-[160px] bg-light dark:bg-dark duration-500">
               Last 7 Days
