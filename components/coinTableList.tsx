@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import the icons you need
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 export default function CoinTableList({
   coinList,
   listChange,
@@ -180,84 +180,86 @@ export default function CoinTableList({
         </thead>
         <tbody>
           {coinList.map((coin: any, index: number) => (
-            <tr className="border-b" key={index}>
-              <td className="p-2 self-center break-words text-left sticky left-0 bg-light dark:bg-dark duration-500 min-w-[45px] max-w-[45px]">
-                {coin.market_data.market_cap_rank}
-              </td>
-              <td
-                className={`p-2 flex-1 self-center break-words text-left sticky bg-light dark:bg-dark duration-500 left-[45px] min-w-[140px]`}
-              >
-                <img
-                  src={coin.image.thumb}
-                  alt=""
-                  className="mr-2 inline-block rounded"
-                />{" "}
-                <span className="hidden sm:inline">{coin.name + " "}</span>
-                <span className="text-sm font-bold py-1 px-2 bg-gray-100 dark:bg-slate-800 rounded text-dark dark:text-light">
-                  {coin.symbol.toUpperCase()}
-                </span>
-              </td>
-              <td className="p-2 self-center break-words text-right duration-500 border-b">
-                $
-                {Boolean(coin.market_data.current_price.usd)
-                  ? coin.market_data.current_price.usd.toLocaleString()
-                  : ""}
-              </td>
-              <td
-                className={
-                  `p-2 self-center break-words text-right ` +
-                  (coin.market_data.price_change_percentage_24h > 0
-                    ? "text-green-500"
-                    : "text-red-500")
-                }
-              >
-                {Boolean(coin.market_data.price_change_percentage_24h)
-                  ? coin.market_data.price_change_percentage_24h
-                      .toFixed(2)
-                      .toLocaleString() + "%"
-                  : "-"}
-              </td>
-              <td
-                className={
-                  `p-2 self-center break-words text-right ` +
-                  (coin.market_data.price_change_percentage_7d > 0
-                    ? "text-green-500"
-                    : "text-red-500")
-                }
-              >
-                {Boolean(coin.market_data.price_change_percentage_7d)
-                  ? coin.market_data.price_change_percentage_7d
-                      .toFixed(2)
-                      .toLocaleString() + "%"
-                  : "-"}
-              </td>
-              <td className="p-2 self-center break-words text-right">
-                {Boolean(coin.market_data.market_cap.usd)
-                  ? "$" + coin.market_data.market_cap.usd.toLocaleString()
-                  : "-"}
-              </td>
-              <td className="p-2 self-center break-words text-right">
-                {Boolean(coin.market_data.total_volume.usd)
-                  ? "$" + coin.market_data.total_volume.usd.toLocaleString()
-                  : "-"}
-              </td>
-              <td className="p-2 self-center break-words text-right">
-                {Boolean(coin.market_data.circulating_supply)
-                  ? parseInt(
-                      coin.market_data.circulating_supply
-                    ).toLocaleString() +
-                    " " +
-                    coin.symbol.toUpperCase()
-                  : "-"}
-              </td>
-              <td className="p-2 self-center break-words text-right ">
-                <img
-                  className="inline h-14"
-                  src={getGraphUrl(coin.image.thumb)}
-                  alt=""
-                />
-              </td>
-            </tr>
+            <Link href={"/coin/" + coin.id} key={index}>
+              <tr className="border-b cursor-pointer">
+                <td className="p-2 self-center break-words text-left sticky left-0 bg-light dark:bg-dark duration-500 min-w-[45px] max-w-[45px]">
+                  {coin.market_data.market_cap_rank}
+                </td>
+                <td
+                  className={`p-2 flex-1 self-center break-words text-left sticky bg-light dark:bg-dark duration-500 left-[45px] min-w-[140px]`}
+                >
+                  <img
+                    src={coin.image.thumb}
+                    alt=""
+                    className="mr-2 inline-block rounded"
+                  />{" "}
+                  <span className="hidden sm:inline">{coin.name + " "}</span>
+                  <span className="text-sm font-bold py-1 px-2 bg-gray-100 dark:bg-slate-800 rounded text-dark dark:text-light">
+                    {coin.symbol.toUpperCase()}
+                  </span>
+                </td>
+                <td className="p-2 self-center break-words text-right duration-500 border-b">
+                  $
+                  {Boolean(coin.market_data.current_price.usd)
+                    ? coin.market_data.current_price.usd.toLocaleString()
+                    : ""}
+                </td>
+                <td
+                  className={
+                    `p-2 self-center break-words text-right ` +
+                    (coin.market_data.price_change_percentage_24h > 0
+                      ? "text-green-500"
+                      : "text-red-500")
+                  }
+                >
+                  {Boolean(coin.market_data.price_change_percentage_24h)
+                    ? coin.market_data.price_change_percentage_24h
+                        .toFixed(2)
+                        .toLocaleString() + "%"
+                    : "-"}
+                </td>
+                <td
+                  className={
+                    `p-2 self-center break-words text-right ` +
+                    (coin.market_data.price_change_percentage_7d > 0
+                      ? "text-green-500"
+                      : "text-red-500")
+                  }
+                >
+                  {Boolean(coin.market_data.price_change_percentage_7d)
+                    ? coin.market_data.price_change_percentage_7d
+                        .toFixed(2)
+                        .toLocaleString() + "%"
+                    : "-"}
+                </td>
+                <td className="p-2 self-center break-words text-right">
+                  {Boolean(coin.market_data.market_cap.usd)
+                    ? "$" + coin.market_data.market_cap.usd.toLocaleString()
+                    : "-"}
+                </td>
+                <td className="p-2 self-center break-words text-right">
+                  {Boolean(coin.market_data.total_volume.usd)
+                    ? "$" + coin.market_data.total_volume.usd.toLocaleString()
+                    : "-"}
+                </td>
+                <td className="p-2 self-center break-words text-right">
+                  {Boolean(coin.market_data.circulating_supply)
+                    ? parseInt(
+                        coin.market_data.circulating_supply
+                      ).toLocaleString() +
+                      " " +
+                      coin.symbol.toUpperCase()
+                    : "-"}
+                </td>
+                <td className="p-2 self-center break-words text-right ">
+                  <img
+                    className="inline h-14"
+                    src={getGraphUrl(coin.image.thumb)}
+                    alt=""
+                  />
+                </td>
+              </tr>
+            </Link>
           ))}
         </tbody>
       </table>
